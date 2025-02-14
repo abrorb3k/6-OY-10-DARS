@@ -1,6 +1,6 @@
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
-import About from "./pages/about"
+import Aboutt from "./pages/About"
 import Products from "./pages/products";
 import Details from "./pages/Details";
 import Cart from "./pages/Cart";
@@ -22,10 +22,10 @@ function App() {
           }
         ></Route>
         <Route
-          path="/about"
+          path="/aboutt"
           element={
             <MainLayout>
-              <About></About>
+              <Aboutt></Aboutt>
             </MainLayout>
           }
         ></Route>
