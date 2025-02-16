@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import Card from "../component/card";
+import Card from "../component/Card"
 import { axis } from "../axios";
 
 function Products() {
@@ -14,6 +14,7 @@ function Products() {
     order: "a-z",
     price: 100000,
     shipping: false,
+    
   });
 
   useEffect(() => {
