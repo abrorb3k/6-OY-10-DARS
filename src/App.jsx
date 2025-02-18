@@ -1,7 +1,8 @@
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Products from "./pages/products";
+// import Products from "./pages/products";
+import Products from "../src/pages/Products"
 import Details from "./pages/Details";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
