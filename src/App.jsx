@@ -1,6 +1,7 @@
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import About from "./pages/About";
+// import Products from "/pages/products";
 import Products from "./pages/products";
 // import Products from "./pages/Product"
 import Details from "./pages/Details";
