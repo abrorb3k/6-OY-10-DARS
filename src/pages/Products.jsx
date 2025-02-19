@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Card from "../component/Card"
+import Pagination from "@mui/material/Pagination";
 import { axis } from "../axios";
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPage,setTotalPage] = useState(1)
   const [filter, setFilter] = useState({
     search: "",
     company: "all",
@@ -70,6 +73,23 @@ function Products() {
       });
   }, []);
 
+  useEffect(() => {
+    axis
+      .get(`/products?page=${currentPage    }`)
+      .then((response) => {
+        if (response.status == 200) {
+          setProducts(response?.data?.data)
+          setTotalPage(response.data.meta.pagination.pageCount);
+        }
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [currentPage])
+
   function handleFilter(e) {
     e.preventDefault();
     let url = `/products?search=${filter.search}&company=${
@@ -87,7 +107,8 @@ function Products() {
       .get(url)
       .then((response) => {
         if (response.status == 200) {
-          setProducts(response?.data?.data);
+          setProducts(response?.data?.data)
+          setTotalPage(response.data.meta.pagination.pageCount)
         }
       })
       .catch((error) => {
@@ -96,6 +117,10 @@ function Products() {
       .finally(() => {
         setLoading(false);
       });
+  }
+
+  function handlePaginate(event, target){
+    setCurrentPage(target)
   }
 
   return (
@@ -136,7 +161,8 @@ function Products() {
             onChange={(e) => {
               setFilter({ ...filter, company: e.target.value });
             }}
-            className=" bg-white border rounded-md p-2">
+            className=" bg-white border rounded-md p-2"
+          >
             <option value="all">all</option>
             <option value="Modenza">Modenza</option>
             <option value="Luxora">Luxora</option>
@@ -212,6 +238,9 @@ function Products() {
         {!loading && products.length == 0 && (
           <p>Sorry,no products matched your search...</p>
         )}
+      </div>
+      <div>
+        <Pagination onChange={handlePaginate} page={currentPage} className="flex justify-end mb-4" count={totalPage} variant="outlined" shape="rounded" />
       </div>
     </div>
   );

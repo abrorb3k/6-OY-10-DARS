@@ -1,8 +1,11 @@
+import { useContext, useState } from "react";
 import React from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { CartContext } from "../App";
 
 function Header() {
   const location = useLocation();
+  const {cart} = useContext(CartContext)
   return (
     <header>
       <div className="bg-blue-900 px-30 mx-auto">
@@ -69,10 +72,10 @@ function Header() {
                 >
                   Cart
                 </NavLink>
-              </li>
+              </li> 
             </ul>
           </nav>
-          <p>0</p>
+          <p>{cart.length}</p>
         </div>
       </div>
     </header>
