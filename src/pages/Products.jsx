@@ -6,7 +6,7 @@ import Card from "../component/Card";
 import grid from "../assets/gridd.svg";
 import list from "../assets/menu.svg";
 
-function Products() {
+function PRoducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -296,4 +296,4 @@ return (
   );
 }
 
-export default Products;
+export default PRoducts;
